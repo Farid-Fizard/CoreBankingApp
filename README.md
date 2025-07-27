@@ -55,7 +55,7 @@ Built with **Spring Boot**, **Spring Security**, **JWT Authentication**, and **P
    ```bash
    git clone https://github.com/Farid-Fizard/CoreBankingApp.git
    cd CoreBankingApp
-````
+
 
 2. Configure `application.properties`:
 
