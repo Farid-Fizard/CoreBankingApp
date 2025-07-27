@@ -1,8 +1,4 @@
-Elbette! Aşağıda hatasız ve düzgün biçimlendirilmiş bir **GitHub README.md** dosyası versiyonu yer alıyor:
 
----
-
-````markdown
 # 🏦 Bank Management System
 
 A RESTful API for managing banking operations including account management, ATM transactions (deposit & withdraw), internal and external transfers, and loan applications.  
