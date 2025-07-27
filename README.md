@@ -1,50 +1,69 @@
+Elbette! Aşağıda hatasız ve düzgün biçimlendirilmiş bir **GitHub README.md** dosyası versiyonu yer alıyor:
+
+---
+
+````markdown
 # 🏦 Bank Management System
 
-A RESTful API for managing banking operations including account management, ATM transactions (deposit & withdraw), internal and external transfers, and loan applications. Built with **Spring Boot**, **Spring Security**, **JWT Authentication**, and **PostgreSQL**.
+A RESTful API for managing banking operations including account management, ATM transactions (deposit & withdraw), internal and external transfers, and loan applications.  
+Built with **Spring Boot**, **Spring Security**, **JWT Authentication**, and **PostgreSQL**.
 
-## Features
-- **Authentication**: User login and registration with JWT-based authentication and role-based access control.
-- **User Management**: Secure login system and token-based session management.
+---
+
+## 🚀 Features
+
+- **Authentication**: JWT-based login and registration with role-based access.
+- **User Management**: Secure authentication and token handling.
 - **Account Management**:
   - Create bank accounts
   - View personal accounts
-  - Request account closure (requires admin approval)
+  - Request account closure (admin approval required)
 - **ATM Transactions**:
-  - Deposit and withdraw funds
+  - Deposit funds
+  - Withdraw funds
 - **Money Transfer**:
-  - Internal transfer between user’s own accounts
-  - External transfer to other users’ accounts
+  - Internal (between own accounts)
+  - External (to another user's account)
 - **Loan System**:
   - Apply for a loan
-  - Admin can approve or reject loans
-- **Security**: Endpoints protected with JWT authentication
-- **Lombok**: To reduce boilerplate code
+  - Admin can approve or reject
+- **Security**: All endpoints secured with JWT
+- **Lombok**: Cleaner code with less boilerplate
 
-## Technologies Used
-- Java 17
-- Spring Boot 3
-- Spring Security (JWT Authentication)
-- PostgreSQL
-- Hibernate & JPA
-- Lombok
-- Liquibase (for DB migration)
+---
 
-## Installation & Setup
+## 🛠️ Technologies Used
 
-### Prerequisites
+- Java 17  
+- Spring Boot 3  
+- Spring Security (JWT)  
+- PostgreSQL  
+- Hibernate & JPA  
+- Liquibase  
+- Lombok  
+
+---
+
+## ⚙️ Installation & Setup
+
+### ✅ Prerequisites
+
 - Java 17+
 - PostgreSQL installed and running
 - Maven installed
 
-### Configuration
+### 🔧 Configuration
+
 1. Clone the repository:
 
-   ```sh
-   git clone https://github.com/your-repo/bank-management-system.git
-   cd bank-management-system
-2. Configure application.properties:
+   ```bash
+   git clone https://github.com/Farid-Fizard/CoreBankingApp.git
+   cd CoreBankingApp
+````
 
-   ```sh
+2. Configure `application.properties`:
+
+   ```properties
    spring.datasource.url=jdbc:postgresql://localhost:5432/bank_db
    spring.datasource.username=your_username
    spring.datasource.password=your_password
@@ -54,54 +73,72 @@ A RESTful API for managing banking operations including account management, ATM 
    liquibase.change-log=classpath:/db/changelog/db.changelog-master.xml
    jwt.secret=your_long_jwt_secret_key
    jwt.expiration=3600000
-   
-3.Build and run the application:
- sh
+   ```
+
+3. Build and run the application:
+
+   ```bash
    mvn spring-boot:run
+   ```
 
+---
 
-##API Endpoints
+## 📡 API Endpoints
 
-###Authentication
-POST /api/auth/register – Register a new user and receive a JWT token
+### 🔐 Authentication
 
-POST /api/auth/login – Authenticate and receive a JWT token
+* `POST /api/auth/register` – Register a new user and receive a JWT token
+* `POST /api/auth/login` – Authenticate and receive a JWT token
+* `POST /api/auth/refresh` – Refresh access token
 
-POST /api/auth/refresh – Refresh access token
+### 🧾 Bank Account
 
-###Bank Account
-POST /api/accounts – Create a new bank account
+* `POST /api/accounts` – Create a new bank account
+* `GET /api/accounts` – Get all accounts of the logged-in user
+* `POST /api/accounts/{id}/request-closure` – Request account closure
+* `POST /api/accounts/{id}/approve-closure` – Admin approves account closure
 
-GET /api/accounts – Get all accounts of the logged-in user
+### 🏧 ATM
 
-POST /api/accounts/{id}/request-closure – Request account closure
+* `POST /api/atm/deposit` – Deposit funds into an account
+* `POST /api/atm/withdraw` – Withdraw funds from an account
 
-POST /api/accounts/{id}/approve-closure – Admin approves account closure
+### 💸 Transactions
 
-###ATM
-POST /api/atm/deposit – Deposit funds into an account
+* `POST /api/transactions/internal` – Transfer between user’s own accounts
+* `POST /api/transactions/external` – Transfer to another user’s account
 
-POST /api/atm/withdraw – Withdraw funds from an account
+### 💳 Loans
 
-###Transactions
-POST /api/transactions/internal – Transfer money between user’s own accounts
+* `POST /api/loans/apply` – Apply for a loan
+* `GET /api/loans/myloans` – Get all loans of logged-in user
+* `GET /api/loans/{loanId}` – Get loan details by ID
+* `PUT /api/loans/{loanId}/approve` – Admin approves a loan
+* `PUT /api/loans/{loanId}/reject` – Admin rejects a loan
 
-POST /api/transactions/external – Transfer money to another user’s account
+---
 
-###Loans
-POST /api/loans/apply – Apply for a loan
+## 🔒 Authentication & Security
 
-GET /api/loans/myloans – Get all loans of the logged-in user
-
-GET /api/loans/{loanId} – Get loan details by ID
-
-PUT /api/loans/{loanId}/approve – Admin approves a loan
-
-PUT /api/loans/{loanId}/reject – Admin rejects a loan
-
-##Authentication & Security
 All protected endpoints require JWT authentication.
-- Include Authorization: Bearer <token> in headers for authenticated requests.
+Include the following in request headers:
 
-###Contributing
-Feel free to fork this repository and open a pull request. Contributions are very welcome!
+```
+Authorization: Bearer <your_jwt_token>
+```
+
+---
+
+## 🤝 Contributing
+
+Feel free to fork this repository and submit a pull request.
+All contributions are welcome!
+
+---
+
+## 📄 License
+
+This project is licensed under the **MIT License**.
+
+```
+
