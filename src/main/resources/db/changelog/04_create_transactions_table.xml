@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="4" author="Farid">
+        <createTable tableName="transactions">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="from_account_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="to_account_id" type="BIGINT">
+                <constraints nullable="true"/>
+            </column>
+
+            <column name="to_iban" type="VARCHAR(34)"/>
+
+            <column name="amount" type="DECIMAL(19,2)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="type" type="VARCHAR(30)"/>
+
+            <column name="timestamp" type="TIMESTAMP"/>
+
+            <column name="successful" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="fk_transaction_from_account"
+                baseTableName="transactions"
+                baseColumnNames="from_account_id"
+                referencedTableName="bank_accounts"
+                referencedColumnNames="id"/>
+
+        <addForeignKeyConstraint
+                constraintName="fk_transaction_to_account"
+                baseTableName="transactions"
+                baseColumnNames="to_account_id"
+                referencedTableName="bank_accounts"
+                referencedColumnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>

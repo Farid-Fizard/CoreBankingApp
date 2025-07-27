@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+
+    <changeSet id="5" author="Farid">
+
+        <createTable tableName="loans">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+
+            <column name="amount" type="NUMERIC(18,2)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="interest_rate" type="NUMERIC(5,4)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="term_in_months" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="status" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="start_date" type="DATE"/>
+            <column name="end_date" type="DATE"/>
+
+            <column name="account_id" type="BIGINT">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="monthly_income" type="NUMERIC(10,2)">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="age" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="credit_score" type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+
+            <column name="has_guarantor" type="BOOLEAN">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <addForeignKeyConstraint
+                constraintName="fk_loans_account"
+                baseTableName="loans"
+                baseColumnNames="account_id"
+                referencedTableName="bank_accounts"
+                referencedColumnNames="id"/>
+
+    </changeSet>
+
+</databaseChangeLog>
